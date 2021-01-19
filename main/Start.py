@@ -7,10 +7,12 @@ from textApplication import sendTextMessage
 
 # current_price = WebScrapper.getCurrentPrice("TSLA")
 # print(current_price)
-ticker = "TSLA"
-WebScrapper.getTopNewsHeadlines()
+
+# ticker = "TSLA"
+# WebScrapper.getTopNewsHeadlines()
 
 # results = DataBase.showAllCOmpanies()
 # # print(results)
+
 #
-# sendTextMessage("hello")
+sendTextMessage("hello")

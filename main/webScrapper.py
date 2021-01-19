@@ -4,6 +4,11 @@ from selenium.webdriver.common.keys import Keys
 import time
 import random
 
+def random_number_gen():
+    random_9 = float(random.randrange(4, 9) / 10)
+    random_1 = float(random.randrange(0, 1))
+    return random_1 + random_9
+
 class WebScrapper():
 
     def getCurrentPrice(self, ticker):
@@ -29,7 +34,8 @@ class WebScrapper():
         driver.quit()
 
     def getTopNewsHeadlines():
-        headless = False
+        headless = True
+        ticker = "TSLA" + " news"
 
         if headless == True:
             options = Options()
@@ -48,11 +54,17 @@ class WebScrapper():
         full_xpath = "/html/body/div[2]/div[3]/form/div[2]/div[1]/div[1]/div/div[2]/input"
         search = driver.find_element_by_xpath(full_xpath)
 
-        search.send_keys("TSLA")
-        time.sleep(.5)
+        for letter in ticker:
+            search.send_keys(letter)
+            time.sleep(random_number_gen())
 
         search.send_keys(Keys.ENTER)
-        time.sleep(1.5)
+        time.sleep(1)
+
+        xpath = '//*[@id="rso"]/div[2]/div[1]/div[2]/div[2]/div/span/span'
+        articles = driver.find_elements_by_xpath(xpath)
+        print(type(articles))
+        print(articles)
 
 
 
