@@ -1,5 +1,5 @@
 from tkinter import *
-from dataBase import DataBase
+from dataBase import savedatatosql, deleteCompany, getListOfCompanies
 
 def openGui():
     root = Tk()
@@ -8,19 +8,29 @@ def openGui():
     ticker_var = StringVar()
     price_var = StringVar()
 
-    def submit():
+    def submitAdd():
         name = name_entry.get()
         ticker = ticker_entry.get()
         TargetPrice = price_var.get()
 
-        DataBase.savedatatosql(name, ticker, TargetPrice)
+        savedatatosql(name, ticker, TargetPrice)
 
         #resets the entry fields
         name_var.set("")
         ticker_var.set("")
         price_var.set("")
 
-    #************************ GUI compentents********************
+
+    tickerd_var = StringVar()
+    def submitDelete():
+        tickerd = tickerd_entry.get()
+        deleteCompany(tickerd)
+
+        #resets the entry fields
+        tickerd_var.set("")
+
+
+    ### GUI compentents for adding a company##################################
 
     #creating a label for company and iserting it on page
     name_label = Label(root, text="company")
@@ -47,7 +57,33 @@ def openGui():
     price_entry.grid(row=2, column=1)
 
     #submit button
-    submit_button = Button(root, text="submit", command=submit)
+    submit_button = Button(root, text="submit", command=submitAdd)
     submit_button.grid(row=3, column=1)
+
+    ### for deleting a company #################################################
+
+    # creating a label for company and iserting it on page
+    tickerd_label = Label(root, text="Ticker to Delete")
+    tickerd_label.grid(row=0, column=2)
+
+    # company name entry and insert
+    tickerd_entry = Entry(root, textvariable=tickerd_var)
+    tickerd_entry.grid(row=0, column=3)
+
+    # submit button
+    submit_button = Button(root, text="submit", command=submitDelete)
+    submit_button.grid(row=1, column=3)
+
+    ########## display current companies #######################################
+
+    display_label = Label(root, text="Companies")
+    display_label.grid(row=3, column=3)
+
+
+    companies = getListOfCompanies
+
+    display = Label(root, text=companies)
+    display.grid(row=4, column=3)
+
 
     root.mainloop()

@@ -1,18 +1,29 @@
-from display import openGui
-from webScrapper import WebScrapper
-from dataBase import DataBase
-from textApplication import sendTextMessage
+# from display import openGui
 
-# openGui()
+from main.dataBase import DataBase
+# from textApplication import sendTextMessage
+from main.analysis import Analysis
+from main.webScrapper import WebScrapper
 
-# current_price = WebScrapper.getCurrentPrice("TSLA")
-# print(current_price)
 
-# ticker = "TSLA"
-# WebScrapper.getTopNewsHeadlines()
 
-# results = DataBase.showAllCOmpanies()
-# # print(results)
+ticker = 'TSLA'
 
-#
-sendTextMessage("hello")
+print(Analysis.compareCurrentCompaniesToTarget())
+
+# Webscrapper ___________________________________________________
+
+# TSLA = WebScrapper.getCurrentPrice(ticker)
+# print(TSLA)
+
+# daily = WebScrapper.checkDailyLosers()
+# print(daily)
+
+# Database checker ______________________________________________
+
+# companies_all = DataBase.showAllCOmpanies()
+# print(companies_all)
+
+# DataBase.deleteCompany("SRNE")
+
+# DataBase.savedatatosql("Telsa", "TSLA", 820)
